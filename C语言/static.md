@@ -2,18 +2,20 @@
 
 ## 1. **局部静态变量**（在函数内部）
 
-`void function() {`
-    `static int count = 0;  // 静态局部变量`
-    `count++;`
-    `printf("函数被调用了 %d 次\n", count);`
-`}`
+```c
+void function() {
+    static int count = 0;  // 静态局部变量
+    count++;
+    printf("函数被调用了 %d 次\n", count);
+}
 
-`int main() {`
-    `function();  // 输出：函数被调用了 1 次`
-    `function();  // 输出：函数被调用了 2 次`
-    `function();  // 输出：函数被调用了 3 次`
-    `return 0;`
-`}`
+int main() {
+    function();  // 输出：函数被调用了 1 次
+    function();  // 输出：函数被调用了 2 次
+    function();  // 输出：函数被调用了 3 次
+    return 0;
+}
+```
 
 ### 特点：
 
@@ -28,15 +30,17 @@
 
 ## 2. **静态全局变量**（在函数外部）
 
-`// file1.c`
-`static int private_var = 10;  // 静态全局变量，只在当前文件可见`
+```c
+// file1.c
+static int private_var = 10;  // 静态全局变量，只在当前文件可见
 
-`void function1() {`
-    `private_var = 20;  // 可以访问`
-`}`
+void function1() {
+    private_var = 20;  // 可以访问
+}
 
-`// file2.c`
-`extern int private_var;  // 错误！无法访问file1.c中的private_var`
+// file2.c
+extern int private_var;  // 错误！无法访问file1.c中的private_var
+```
 
 ### 特点：
 
@@ -47,20 +51,24 @@
 
 ## 3. **静态函数**
 
-`// file1.c`
-`static void private_function() {  // 静态函数，只在当前文件可见`
-    `printf("这是一个私有函数\n");`
-`}`
+```c
+// file1.c
+static void private_function() {  // 静态函数，只在当前文件可见
+    printf("这是一个私有函数\n");
+}
 
-`// file2.c`
-`extern void private_function();  // 错误！无法访问`
+// file2.c
+extern void private_function();  // 错误！无法访问
+```
 
 ## 4. **静态成员变量**（在结构体中）
 
-`struct Counter {`
-    `int id;`
-    `static int total_count;  // 静态成员（C语言不支持，这是C++语法）`
-`};`
+```c
+struct Counter {
+    int id;
+    static int total_count;  // 静态成员（C语言不支持，这是C++语法）
+};
+```
 
 **注意**：C语言的结构体不支持静态成员，这是C++的特性。
 
@@ -78,33 +86,39 @@
 
 ### 1. **计数器功能**
 
-`int get_next_id() {`
-    `static int id = 0;`
-    `return ++id;`
-`}`
+```c
+int get_next_id() {
+    static int id = 0;
+    return ++id;
+}
+```
 
 ### 2. **缓存/记忆化**
 
-`int fibonacci(int n) {`
-    `static int cache[100] = {0};`
+```c
+int fibonacci(int n) {
+    static int cache[100] = {0};
     
-    `if (n <= 1) return n;`
-    `if (cache[n] != 0) return cache[n];`
+    if (n <= 1) return n;
+    if (cache[n] != 0) return cache[n];
     
-    `cache[n] = fibonacci(n-1) + fibonacci(n-2);`
-    `return cache[n];`
-`}`
+    cache[n] = fibonacci(n-1) + fibonacci(n-2);
+    return cache[n];
+}
+```
 
 ### 3. **单次初始化**
 
-`void initialize_once() {`
-    `static bool initialized = false;`
-    `if (!initialized) {`
-        `printf("初始化资源...\n");`
-        `initialized = true;`
-    `}`
-    `// 其他操作...`
-`}`
+```c
+void initialize_once() {
+    static bool initialized = false;
+    if (!initialized) {
+        printf("初始化资源...\n");
+        initialized = true;
+    }
+    // 其他操作...
+}
+```
 
 ## 重要注意事项
 
@@ -117,11 +131,13 @@
 4. **初始化时机**：在main函数执行之前初始化
     
 
-`// 线程不安全的例子`
-`int get_id() {`
-    `static int id = 0;`
-    `return ++id;  // 多线程下可能得到重复ID`
-`}`
+```c
+// 线程不安全的例子
+int get_id() {
+    static int id = 0;
+    return ++id;  // 多线程下可能得到重复ID
+}
+```
 
 ## 对比表格
 

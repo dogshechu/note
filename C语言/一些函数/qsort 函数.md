@@ -35,36 +35,38 @@
 3. **处理相等情况**：确保相等时返回0
     
 4. **避免溢出**：特别是整数比较时
-`// 整数升序`
-`int compare_int_asc(const void *a, const void *b) {`
-    `int x = *(int*)a;`
-    `int y = *(int*)b;`
-    `if (x < y) return -1;`
-    `if (x > y) return 1;`
-    `return 0;`
-`}`
+```c
+// 整数升序
+int compare_int_asc(const void *a, const void *b) {
+    int x = *(int*)a;
+    int y = *(int*)b;
+    if (x < y) return -1;
+    if (x > y) return 1;
+    return 0;
+}
 
-`// 整数降序`
-`int compare_int_desc(const void *a, const void *b) {`
-    `int x = *(int*)a;`
-    `int y = *(int*)b;`
-    `if (x > y) return -1;  // 注意：这里反过来了`
-    `if (x < y) return 1;`
-    `return 0;`
-`}`
+// 整数降序
+int compare_int_desc(const void *a, const void *b) {
+    int x = *(int*)a;
+    int y = *(int*)b;
+    if (x > y) return -1;  // 注意：这里反过来了
+    if (x < y) return 1;
+    return 0;
+}
 
-`// 字符串升序`
-`int compare_str_asc(const void *a, const void *b) {`
-    `return strcmp(*(const char**)a, *(const char**)b);`
-`}`
+// 字符串升序
+int compare_str_asc(const void *a, const void *b) {
+    return strcmp(*(const char**)a, *(const char**)b);
+}
 
-`// 结构体排序`
-`int compare_struct(const void *a, const void *b) {`
-    `MyStruct *s1 = (MyStruct*)a;`
-    `MyStruct *s2 = (MyStruct*)b;`
-    `// 多级排序示例`
-    ``if (s1->field1 != s2->field1) {``
-        ``return s1->field1 - s2->field1;``
-    ``}``
-    ``return s1->field2 - s2->field2;``
-`}`
+// 结构体排序
+int compare_struct(const void *a, const void *b) {
+    MyStruct *s1 = (MyStruct*)a;
+    MyStruct *s2 = (MyStruct*)b;
+    // 多级排序示例
+    `if (s1->field1 != s2->field1) {`
+        `return s1->field1 - s2->field1;`
+    `}`
+    `return s1->field2 - s2->field2;`
+}
+```

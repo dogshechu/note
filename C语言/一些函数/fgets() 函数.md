@@ -38,8 +38,8 @@ char *fgets(char *str, int n, FILE *stream);
 
 ## 基本用法
 
-c
 
+```c
 #include <stdio.h>
 
 int main() {
@@ -52,13 +52,12 @@ int main() {
     
     return 0;
 }
-
+```
 ## 处理换行符
 
 由于 `fgets()` 会保留换行符，通常需要移除它：
 
-c
-
+```c
 #include <stdio.h>
 #include <string.h>
 
@@ -78,6 +77,7 @@ int main() {
     
     return 0;
 }
+```
 
 ## 与 `scanf()` 的比较
 
@@ -90,8 +90,8 @@ int main() {
 
 ## 实际应用示例
 
-c
 
+```c
 #include <stdio.h>
 #include <string.h>
 
@@ -119,7 +119,7 @@ int main() {
     
     return 0;
 }
-
+```
 ## 注意事项
 
 1. **混合使用 `fgets()` 和 `scanf()`**：
@@ -135,8 +135,8 @@ int main() {
     - 处理可能的读取错误或文件结束
         
 
-c
 
+```c
 #include <stdio.h>
 #include <string.h>
 
@@ -154,6 +154,7 @@ int main() {
     
     return 0;
 }
+```
 
 ## 总结
 
